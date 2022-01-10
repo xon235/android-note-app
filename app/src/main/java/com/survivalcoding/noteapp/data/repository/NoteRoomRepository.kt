@@ -14,7 +14,7 @@ class NoteRoomRepository(private val noteDao: NoteDao) : NoteRepository {
         return noteDao.selectById(id)
     }
 
-    override suspend fun insertNote(note: Note) {
+    override suspend fun upsertNote(note: Note) {
         noteDao.upsert(note)
     }
 

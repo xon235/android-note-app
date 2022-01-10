@@ -8,7 +8,7 @@ interface NoteRepository {
 
     suspend fun getNoteById(id: Int): Note?
 
-    suspend fun insertNote(note: Note)
+    suspend fun upsertNote(note: Note)
 
     suspend fun deleteNote(note: Note)
 }
