@@ -1,4 +1,4 @@
-package com.survivalcoding.noteapp
+package com.survivalcoding.noteapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
