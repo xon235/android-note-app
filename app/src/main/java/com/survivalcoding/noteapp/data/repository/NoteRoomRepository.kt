@@ -1,23 +1,24 @@
 package com.survivalcoding.noteapp.data.repository
 
+import com.survivalcoding.noteapp.data.data_source.NoteDao
 import com.survivalcoding.noteapp.domain.model.Note
 import com.survivalcoding.noteapp.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 
-class NoteRepositorImpl : NoteRepository {
+class NoteRoomRepository(private val noteDao: NoteDao) : NoteRepository {
     override fun getNotes(): Flow<List<Note>> {
-        TODO("Not yet implemented")
+        return noteDao.selectAll()
     }
 
     override suspend fun getNoteById(id: Int): Note? {
-        TODO("Not yet implemented")
+        return noteDao.selectById(id)
     }
 
     override suspend fun insertNote(note: Note) {
-        TODO("Not yet implemented")
+        noteDao.upsert(note)
     }
 
     override suspend fun deleteNote(note: Note) {
-        TODO("Not yet implemented")
+        deleteNote(note)
     }
 }
