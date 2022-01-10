@@ -1,14 +1,11 @@
 package com.survivalcoding.noteapp.domain.repository
 
 import com.survivalcoding.noteapp.domain.model.Note
-import kotlinx.coroutines.flow.Flow
 
-interface NoteRepository {
-    fun getNotes(): Flow<List<Note>>
+interface NoteRepository: SelectAllRepository<Note> {
+    suspend fun getById(id: Int): Note?
 
-    suspend fun getNoteById(id: Int): Note?
+    suspend fun upsert(note: Note)
 
-    suspend fun upsertNote(note: Note)
-
-    suspend fun deleteNote(note: Note)
+    suspend fun delete(note: Note)
 }

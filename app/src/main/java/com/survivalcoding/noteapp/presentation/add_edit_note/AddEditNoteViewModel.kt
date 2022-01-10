@@ -15,7 +15,13 @@ class AddEditNoteViewModel(private val noteRepository: NoteRepository): ViewMode
 
     fun getNoteById(id: Int) {
         viewModelScope.launch {
-            _note.value = noteRepository.getNoteById(id)
+            _note.value = noteRepository.getById(id)
+        }
+    }
+
+    fun updateNote(note: Note) {
+        viewModelScope.launch {
+            noteRepository.upsert(note)
         }
     }
 }
