@@ -10,12 +10,12 @@ import kotlinx.coroutines.launch
 
 class NoteViewModel(private val noteRepository: NoteRepository): ViewModel() {
 
-    private val _note = MutableLiveData<Note?>()
-    val note: LiveData<Note?> = _note
+    private val _note = MutableLiveData<Note>()
+    val note: LiveData<Note> = _note
 
     fun getNoteById(id: Int) {
         viewModelScope.launch {
-            _note.value = noteRepository.selectById(id)
+            _note.value = noteRepository.selectById(id)?: Note()
         }
     }
 
