@@ -10,7 +10,7 @@ class GetFlowOrderByUseCase<T>(private val repository: SelectAllRepository<T>) {
         isAscFlow: Flow<Boolean>
     ): Flow<List<T>> {
         return combine(repository.selectAll(), comparatorFlow, isAscFlow) { ts, comparator, isAsc ->
-            ts.sortedWith(comparator).apply { if (!isAsc) reversed() }
+            ts.sortedWith(comparator).run { if (!isAsc) reversed() else this}
         }
     }
 }
