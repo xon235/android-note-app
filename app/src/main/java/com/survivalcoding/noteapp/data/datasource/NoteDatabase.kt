@@ -1,4 +1,4 @@
-package com.survivalcoding.noteapp.data.data_source
+package com.survivalcoding.noteapp.data.datasource
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

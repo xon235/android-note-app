@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.survivalcoding.noteapp.NoteApplication
 import com.survivalcoding.noteapp.domain.usecase.GetFlowOrderByUseCase
-import com.survivalcoding.noteapp.presentation.add_edit_note.AddEditNoteViewModel
+import com.survivalcoding.noteapp.presentation.note.NoteViewModel
 import com.survivalcoding.noteapp.presentation.notes.NotesViewModel
 
 class AppViewModelFactory(private val noteApplication: NoteApplication) :
@@ -19,8 +19,8 @@ class AppViewModelFactory(private val noteApplication: NoteApplication) :
                     GetFlowOrderByUseCase(noteApplication.noteRepository)
                 ) as T
             }
-            modelClass.isAssignableFrom(AddEditNoteViewModel::class.java) -> {
-                AddEditNoteViewModel(noteApplication.noteRepository) as T
+            modelClass.isAssignableFrom(NoteViewModel::class.java) -> {
+                NoteViewModel(noteApplication.noteRepository) as T
             }
             else -> {
                 throw IllegalArgumentException("Unknown ViewModel Class ${modelClass.canonicalName}")

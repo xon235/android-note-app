@@ -1,6 +1,6 @@
 package com.survivalcoding.noteapp.data.repository
 
-import com.survivalcoding.noteapp.data.data_source.NoteDao
+import com.survivalcoding.noteapp.data.datasource.NoteDao
 import com.survivalcoding.noteapp.domain.model.Note
 import com.survivalcoding.noteapp.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +11,7 @@ class NoteRoomRepository(private val noteDao: NoteDao) : NoteRepository {
         return noteDao.selectAll()
     }
 
-    override suspend fun getById(id: Int): Note? {
+    override suspend fun selectById(id: Int): Note? {
         return noteDao.selectById(id)
     }
 
