@@ -17,7 +17,7 @@ class NotesViewModel(
 
 
     private val _orderBy = MutableStateFlow(NoteOrderBy.TITLE)
-    private val _isAsc = MutableStateFlow(false)
+    private val _isAsc = MutableStateFlow(true)
     private val _notes = getNotesOrderByUseCase(_orderBy.map { it.toComparator() }, _isAsc)
     private val _deletedNote = MutableStateFlow<Note?>(null)
 

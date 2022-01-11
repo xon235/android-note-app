@@ -18,5 +18,9 @@
         android:id="@+id/noteFragment"
         android:name="com.survivalcoding.noteapp.presentation.note.NoteFragment"
         android:label="fragment_note"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note" >
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
