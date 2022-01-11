@@ -74,6 +74,8 @@ class NotesFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     notesAdapter.submitList(it.notes)
+                    binding.orderByRg.check(it.orderBy.toId())
+                    binding.isAscRg.check(if(it.isAsc) R.id.isAscTrueRb else R.id.isAscFalseRb)
                 }
             }
         }
@@ -82,5 +84,13 @@ class NotesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun NoteOrderBy.toId(): Int {
+        return when(this) {
+            NoteOrderBy.TITLE -> R.id.orderByTitleRb
+            NoteOrderBy.DATE -> R.id.orderByDateRb
+            NoteOrderBy.COLOR -> R.id.orderByColorRb
+        }
     }
 }

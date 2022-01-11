@@ -26,7 +26,6 @@
                 android:id="@+id/orderByTitleRb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="Title" />
             <RadioButton
                 android:id="@+id/orderByDateRb"
@@ -51,7 +50,6 @@
                 android:id="@+id/isAscTrueRb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="Ascending" />
             <RadioButton
                 android:id="@+id/isAscFalseRb"
