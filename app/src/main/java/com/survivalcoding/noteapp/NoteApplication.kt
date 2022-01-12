@@ -15,11 +15,6 @@ class NoteApplication : Application() {
     }
 
     val noteRepository by lazy {
-
-        // Add Default Data...
-        for(i in 1..30) {
-            runBlocking { noteDatabase.noteDao().upsert(Note(i, "Title #${Random.nextInt(0, 1000)}", "Content #${Random.nextInt(0, 1000)}")) }
-        }
         NoteRoomRepository(noteDatabase.noteDao())
     }
 }
