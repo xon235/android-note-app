@@ -1,10 +1,9 @@
 package com.survivalcoding.noteapp.presentation.notes
 
 import android.os.Bundle
+import android.transition.TransitionManager
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -33,6 +32,7 @@ class NotesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -87,6 +87,20 @@ class NotesFragment : Fragment() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_notes, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.notesSort -> {
+                binding.sortLl.toggleVisibility()
+            }
+        }
+
+        return true
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -98,5 +112,10 @@ class NotesFragment : Fragment() {
             NoteOrderBy.TIMESTAMP -> R.id.orderByDateRb
             NoteOrderBy.COLOR -> R.id.orderByColorRb
         }
+    }
+
+    private fun View.toggleVisibility() {
+        TransitionManager.beginDelayedTransition(binding.root)
+        visibility = if(visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
 }
