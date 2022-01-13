@@ -60,6 +60,11 @@ class NotesFragment : Fragment() {
             viewModel.deleteNote(it)
         }).apply {
             registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    binding.notesRv.scrollToPosition(0)
+                }
+
                 override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
                     binding.notesRv.scrollToPosition(0)
                 }
