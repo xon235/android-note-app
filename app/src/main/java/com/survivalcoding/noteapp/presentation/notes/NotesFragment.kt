@@ -3,6 +3,7 @@ package com.survivalcoding.noteapp.presentation.notes
 import android.os.Bundle
 import android.transition.TransitionManager
 import android.view.*
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -17,7 +18,6 @@ import com.survivalcoding.noteapp.databinding.FragmentNotesBinding
 import com.survivalcoding.noteapp.domain.NoteOrderBy
 import com.survivalcoding.noteapp.presentation.AppViewModelFactory
 import com.survivalcoding.noteapp.presentation.notes.adapter.NotesAdapter
-import com.survivalcoding.noteapp.toggleVisibility
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -101,7 +101,7 @@ class NotesFragment : Fragment() {
         when(item.itemId) {
             R.id.notesSort -> {
                 TransitionManager.beginDelayedTransition(binding.root)
-                binding.sortLl.toggleVisibility()
+                binding.sortLl.isVisible = !binding.sortLl.isVisible
             }
         }
 
