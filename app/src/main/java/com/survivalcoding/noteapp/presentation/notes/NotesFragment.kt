@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.survivalcoding.noteapp.NoteApplication
 import com.survivalcoding.noteapp.R
 import com.survivalcoding.noteapp.databinding.FragmentNotesBinding
+import com.survivalcoding.noteapp.domain.NoteOrderBy
 import com.survivalcoding.noteapp.presentation.AppViewModelFactory
 import com.survivalcoding.noteapp.presentation.notes.adapter.NotesAdapter
 import kotlinx.coroutines.flow.collect
@@ -41,7 +42,7 @@ class NotesFragment : Fragment() {
         binding.orderByRg.setOnCheckedChangeListener { _, id ->
             when (id) {
                 R.id.orderByTitleRb -> viewModel.setOrderBy(NoteOrderBy.TITLE)
-                R.id.orderByDateRb -> viewModel.setOrderBy(NoteOrderBy.DATE)
+                R.id.orderByDateRb -> viewModel.setOrderBy(NoteOrderBy.TIMESTAMP)
                 R.id.orderByColorRb -> viewModel.setOrderBy(NoteOrderBy.COLOR)
             }
         }
@@ -89,7 +90,7 @@ class NotesFragment : Fragment() {
     private fun NoteOrderBy.toId(): Int {
         return when(this) {
             NoteOrderBy.TITLE -> R.id.orderByTitleRb
-            NoteOrderBy.DATE -> R.id.orderByDateRb
+            NoteOrderBy.TIMESTAMP -> R.id.orderByDateRb
             NoteOrderBy.COLOR -> R.id.orderByColorRb
         }
     }

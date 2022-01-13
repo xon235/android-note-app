@@ -2,23 +2,23 @@ package com.survivalcoding.noteapp.presentation.notes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.survivalcoding.noteapp.domain.NoteOrderBy
 import com.survivalcoding.noteapp.domain.model.Note
 import com.survivalcoding.noteapp.domain.repository.NoteRepository
-import com.survivalcoding.noteapp.domain.usecase.GetFlowOrderByUseCase
+import com.survivalcoding.noteapp.domain.usecase.GetNotesOrderByUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class NotesViewModel(
     private val noteRepository: NoteRepository,
-    getNotesOrderByUseCase: GetFlowOrderByUseCase<Note>
+    getNotesOrderByUseCase: GetNotesOrderByUseCase
 ) : ViewModel() {
 
 
     private val _orderBy = MutableStateFlow(NoteOrderBy.TITLE)
     private val _isAsc = MutableStateFlow(true)
-    private val _notes = getNotesOrderByUseCase(_orderBy.map { it.toComparator() }, _isAsc)
+    private val _notes = getNotesOrderByUseCase(_orderBy, _isAsc)
     private val _deletedNote = MutableStateFlow<Note?>(null)
 
     val uiState =
