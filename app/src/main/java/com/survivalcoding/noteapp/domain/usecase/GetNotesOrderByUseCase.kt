@@ -16,8 +16,7 @@ class GetNotesOrderByUseCase(private val repository: NoteRepository) {
     ): Flow<List<Note>> {
         return combine(noteOrderByFlow, isAscFlow) {noteOrderBy, isAsc ->
             Pair(noteOrderBy, isAsc)
-        }.flatMapLatest { pair ->
-            val (noteOrderBy, isAsc) = pair
+        }.flatMapLatest { (noteOrderBy, isAsc) ->
             repository.selectAllOrderBy(noteOrderBy.columnName, isAsc)
         }
     }
