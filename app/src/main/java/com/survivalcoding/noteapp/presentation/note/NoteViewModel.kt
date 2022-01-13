@@ -19,7 +19,7 @@ class NoteViewModel(private val noteRepository: NoteRepository): ViewModel() {
         }
     }
 
-    fun updateNote(note: Note) {
+    fun upsertNote(note: Note) {
         viewModelScope.launch {
             noteRepository.upsert(note)
         }
