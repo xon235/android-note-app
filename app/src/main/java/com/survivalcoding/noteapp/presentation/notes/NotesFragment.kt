@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.survivalcoding.noteapp.NoteApplication
 import com.survivalcoding.noteapp.R
 import com.survivalcoding.noteapp.databinding.FragmentNotesBinding
@@ -57,8 +58,12 @@ class NotesFragment : Fragment() {
 
         val notesAdapter = NotesAdapter({
             findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToNoteFragment(it.id!!))
-        }, {
-            viewModel.deleteNote(it)
+        }, { note ->
+            viewModel.deleteNote(note)
+            Snackbar.make(binding.root, "Note Deleted", Snackbar.LENGTH_SHORT).apply {
+                setAction("Redo") { viewModel.undoDelete(note) }
+                anchorView = binding.addFab
+            }.show()
         }).apply {
             registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
 

@@ -19,29 +19,22 @@ class NotesViewModel(
     private val _orderBy = MutableStateFlow(NoteOrderBy.TITLE)
     private val _isAsc = MutableStateFlow(true)
     private val _notes = getNotesOrderByUseCase(_orderBy, _isAsc)
-    private val _deletedNote = MutableStateFlow<Note?>(null)
 
     val uiState =
-        combine(_orderBy, _isAsc, _notes,_deletedNote) { orderBy, isAsc, notes, deletedNote ->
-            NotesUiState(orderBy, isAsc, notes, deletedNote)
+        combine(_orderBy, _isAsc, _notes) { orderBy, isAsc, notes ->
+            NotesUiState(orderBy, isAsc, notes)
         }
 
     fun deleteNote(note: Note) {
         viewModelScope.launch {
             noteRepository.delete(note)
-            _deletedNote.value = note
         }
     }
 
-    fun undoDelete() {
+    fun undoDelete(note: Note) {
         viewModelScope.launch {
-            _deletedNote.value?.let { noteRepository.upsert(it) }
-            _deletedNote.value = null
+            noteRepository.upsert(note)
         }
-    }
-
-    fun setDeletedNoteToNull() {
-        _deletedNote.value = null
     }
 
     fun setOrderBy(orderBy: NoteOrderBy) {

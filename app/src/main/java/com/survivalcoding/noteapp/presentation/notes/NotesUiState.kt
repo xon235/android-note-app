@@ -7,5 +7,4 @@ data class NotesUiState(
     val orderBy: NoteOrderBy = NoteOrderBy.TITLE,
     val isAsc: Boolean = true,
     val notes: List<Note> = listOf(),
-    val deletedNote: Note? = null,
 )
