@@ -16,6 +16,7 @@ import com.survivalcoding.noteapp.databinding.FragmentNotesBinding
 import com.survivalcoding.noteapp.domain.NoteOrderBy
 import com.survivalcoding.noteapp.presentation.AppViewModelFactory
 import com.survivalcoding.noteapp.presentation.notes.adapter.NotesAdapter
+import com.survivalcoding.noteapp.toggleVisibility
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -94,6 +95,7 @@ class NotesFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.notesSort -> {
+                TransitionManager.beginDelayedTransition(binding.root)
                 binding.sortLl.toggleVisibility()
             }
         }
@@ -112,10 +114,5 @@ class NotesFragment : Fragment() {
             NoteOrderBy.TIMESTAMP -> R.id.orderByDateRb
             NoteOrderBy.COLOR -> R.id.orderByColorRb
         }
-    }
-
-    private fun View.toggleVisibility() {
-        TransitionManager.beginDelayedTransition(binding.root)
-        visibility = if(visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
 }
