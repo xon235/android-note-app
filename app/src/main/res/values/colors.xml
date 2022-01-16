@@ -12,4 +12,6 @@
     <color name="pastel_violet">#cf94da</color>
     <color name="aquamarine_blue">#81deea</color>
     <color name="pink_sherbet">#f48fb1</color>
+    <color name="note_corner_lightness">#c9c9c9</color>
+    <color name="main_background">#202020</color>
 </resources>
