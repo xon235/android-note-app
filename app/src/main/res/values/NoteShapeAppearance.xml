@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NoteShapeAppearance">
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerSizeTopRight">32dp</item>
+    </style>
+</resources>
